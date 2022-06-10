@@ -1,7 +1,17 @@
-const getAuth = (req, res) => {
-  res.render("main");
+const getSignUp = (req, res) => {
+  res.render("admin/signup");
+};
+
+const getLogin = (req, res) => {
+
+};
+
+const getAdmin = (req, res) => {
+
 };
 
 module.exports = {
-  getAuth: getAuth,
+  getSignUp: getSignUp,
+  getLogin: getLogin,
+  getAdmin: getAdmin,
 };
