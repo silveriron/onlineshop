@@ -19,4 +19,8 @@ router.get("/admin", authController.getAdmin);
 
 router.get("/logout", authController.logout);
 
+router.get("*", (req, res) => {
+  res.status(404).render("base/404");
+});
+
 module.exports = router;

@@ -5,11 +5,10 @@
     <li>
       <a href="/signup">회원가입</a>
     </li>
-    <% } %>
     <li>
       <a href="/login">로그인</a>
     </li>
-    <% if (locals.isAuth) { %>
+    <% } %> <% if (locals.isAuth) { %>
     <li>
       <a href="/logout">로그아웃</a>
     </li>

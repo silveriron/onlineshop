@@ -6,6 +6,7 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const csrfToken = require("./middlewares/csrfToken");
 const checkAuth = require("./middlewares/checkAuth");
+const errorHandler = require("./middlewares/errorHandler");
 
 const store = new MongoDBStore({
   uri: "mongodb://localhost:27017",
@@ -39,6 +40,8 @@ app.use(csrfToken);
 app.use(checkAuth);
 
 app.use(authRouter);
+
+app.use(errorHandler);
 
 db.connectToDatabase().then(() => {
   app.listen(3000);
