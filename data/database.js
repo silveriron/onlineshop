@@ -7,7 +7,7 @@ const connect = async () => {
   database = await client.db("onlineshop");
 };
 
-const getDb = async () => {
+const getDb = () => {
   if (!database) {
     throw { message: "this connect is wrong" };
   }
@@ -15,6 +15,6 @@ const getDb = async () => {
 };
 
 module.exports = {
-  connect: connect,
+  connectToDatabase: connect,
   getDb: getDb,
 };

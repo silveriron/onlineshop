@@ -26,20 +26,36 @@ body {
 
 header {
     display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: var(--space-4) 0;
 
 }
 
-main {
+/* main {
     width: 40rem;
     max-width: 80rem;
+    padding: var(--space-4);
     margin: 0 auto;
     border: 1px solid black;
+} */
+
+#logo {
+    text-align: center;
+    flex: 1;
+}
+
+header ul {
+    display: flex;
+    flex: 4;
+    justify-content: space-around;
 }
 
 li {
     list-style: none;
     margin: 0;
     padding: 0;
+    
 }
 
 a {
