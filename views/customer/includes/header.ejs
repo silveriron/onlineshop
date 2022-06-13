@@ -1,11 +1,18 @@
 <header>
-    <a id="logo" href="/">볼리는 땅콩을 좋아해</a>
-    <ul>
-        <li>
-            <a href="/signup">회원가입</a>
-        </li>
-        <li>
-            <a href="/login">로그인</a>
-        </li>
-    </ul>
+  <a id="logo" href="/">볼리는 땅콩을 좋아해</a>
+  <ul>
+    <% if (!locals.isAuth) { %>
+    <li>
+      <a href="/signup">회원가입</a>
+    </li>
+    <% } %>
+    <li>
+      <a href="/login">로그인</a>
+    </li>
+    <% if (locals.isAuth) { %>
+    <li>
+      <a href="/logout">로그아웃</a>
+    </li>
+    <% } %>
+  </ul>
 </header>

@@ -2,37 +2,48 @@
 <html lang="en">
   <head>
     <%- include('../customer/includes/head', {title: '회원가입'})%>
-    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/form.css" />
   </head>
   <body>
     <%- include('../customer/includes/header') %>
     <main>
       <h1>회원가입</h1>
-      <form action="/signup" method="POST" id="signUpForm" >
-        <input 
+      <form action="/signup" method="POST" id="signUpForm">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
         <div>
           <label for="email">이메일</label>
-          <input id="email" name="email" type="email" required/>
+          <input id="email" name="email" type="email" required />
         </div>
         <div>
           <label for="password">비밀번호</label>
-          <input id="password" name="password" type="password" minlength="6" required/>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            minlength="6"
+            required
+          />
         </div>
         <div>
           <label for="confirm-password">확인</label>
-          <input id="confirm-password" name="confirm-password" type="password" required/>
+          <input
+            id="confirm-password"
+            name="confirm-password"
+            type="password"
+            required
+          />
         </div>
-        <hr/>
+        <hr />
         <div>
           <label for="name">이름</label>
-          <input id="name" name="name" type="text" required/>
+          <input id="name" name="name" type="text" required />
         </div>
         <div>
           <label for="address">주소</label>
-          <input id="address" name="address" type="text" required/>
+          <input id="address" name="address" type="text" required />
         </div>
         <button class="Btn">가입하기</button>
-          <a id="loginLink" href="/login">로그인하러 가기</a>
+        <a id="loginLink" href="/login">로그인하러 가기</a>
       </form>
     </main>
   </body>
