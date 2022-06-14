@@ -1,12 +1,25 @@
 const express = require("express");
+const path = require("path");
 
 const adminController = require("../controllers/admin.controller");
 
 const router = express.Router();
 
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname + './../public/img/'))
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname + '-' + Date.now())
+  }
+})
+
+const upload = multer({ storage: storage})
+
 router.get("/product", adminController.getAdminProduct);
 
-router.post("/product", adminController.adminProduct);
+router.post("/product", upload.single('img') ,adminController.adminProduct);
 
 router.get("/order", adminController.getAdminOrder);
 

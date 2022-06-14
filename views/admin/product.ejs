@@ -7,7 +7,8 @@
   <body>
     <%- include('../base/includes/header') %>
     <main>
-      <form action="/admin/product" method="POST">
+      <h1>상품추가</h1>
+      <form action="/admin/product?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
         <table>
           <tbody>
             <tr>
@@ -41,8 +42,25 @@
                 />
               </td>
             </tr>
+            <tr>
+              <th>
+                <label for="content">상품설명</label>
+              </th>
+              <td>
+                <textarea id="content" name="content" rows="10"  required></textarea>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="img">이미지</label>
+              </th>
+              <td>
+                <input id="img" name="img" type="file" accept="image/*" required />
+              </td>
+            </tr>
           </tbody>
         </table>
+        <button>업데이트</button>
       </form>
     </main>
   </body>

@@ -3,6 +3,8 @@ const getAdminProduct = (req, res) => {
 };
 
 const adminProduct = (req, res) => {
+  console.log(req.body)
+  console.log(req.file)
   res.render("admin/product");
 };
 

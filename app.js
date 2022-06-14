@@ -4,11 +4,12 @@ const app = express();
 const db = require("./data/database");
 const csurf = require("csurf");
 const session = require("express-session");
-const MongoDBStore = require("connect-mongodb-session")(session);
+
 const csrfToken = require("./middlewares/csrfToken");
 const checkAuth = require("./middlewares/checkAuth");
 const errorHandler = require("./middlewares/errorHandler");
 
+const MongoDBStore = require("connect-mongodb-session")(session);
 const store = new MongoDBStore({
   uri: "mongodb://localhost:27017",
   databaseName: "onlineshop",

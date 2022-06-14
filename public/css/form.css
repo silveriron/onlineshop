@@ -25,10 +25,7 @@ td {
   width: 20rem;
 }
 
-form label {
-  text-align: center;
-  width: 100%;
-}
+
 
 hr {
   margin: 24px auto;
@@ -43,11 +40,23 @@ form input {
   border-radius: 4px;
 }
 
+#img {
+  border: 0;
+}
+
 #invalidPassword {
   color: red;
   font-weight: bold;
   font-size: 10px;
   margin: 0px;
+}
+
+#content {
+  width: 90%;
+  margin: var(--space-2) auto;
+  border: 1px solid var(--color-black-100);
+  border-radius: 4px;
+  resize: none;
 }
 
 form button {
