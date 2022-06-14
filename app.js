@@ -15,6 +15,8 @@ const store = new MongoDBStore({
 });
 
 const authRouter = require("./routers/auth.router");
+const adminRouter = require("./routers/admin.router");
+const customerRouter = require("./routers/customer.router");
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
@@ -39,6 +41,8 @@ app.use(csurf());
 app.use(csrfToken);
 app.use(checkAuth);
 
+app.use(customerRouter);
+app.use("/admin", adminRouter);
 app.use(authRouter);
 
 app.use(errorHandler);

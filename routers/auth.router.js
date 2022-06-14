@@ -11,8 +11,6 @@ router.get("/login", authController.getLogin);
 
 router.post("/login", authController.login);
 
-router.get("/admin", authController.getAdmin);
-
 router.get("/logout", authController.logout);
 
 router.get("*", (req, res) => {
