@@ -2,9 +2,48 @@
 <html lang="en">
   <head>
     <%- include('../base/includes/head', {title: '상품관리'})%>
+    <link rel="stylesheet" href=" /css/form.css" />
   </head>
   <body>
     <%- include('../base/includes/header') %>
-    <main></main>
+    <main>
+      <form action="/admin/product" method="POST">
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                <label for="title">상품이름</label>
+              </th>
+              <td>
+                <input id="title" name="title" type="text" required />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="summary">요약정보</label>
+              </th>
+              <td>
+                <input id="summary" name="summary" type="summary" required />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="price">가격</label>
+              </th>
+              <td>
+                <input
+                  id="price"
+                  name="price"
+                  type="number"
+                  min="100"
+                  step="100"
+                  required
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </main>
   </body>
 </html>

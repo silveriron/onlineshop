@@ -9,11 +9,9 @@
     <main>
       <h1>로그인</h1>
       <section>
-        <h2>
-          <%= inputData.errorMassage %>
-        </h2>
+        <h2><%= inputData.errorMassage %></h2>
       </section>
-      <hr/>
+      <hr />
       <form action="/login" method="POST" id="signUpForm">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
         <table>
@@ -23,7 +21,13 @@
                 <label for="email">이메일</label>
               </th>
               <td>
-                <input id="email" name="email" type="email" value="<%= inputData.email %>" required />
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value="<%= inputData.email %>"
+                  required
+                />
               </td>
             </tr>
             <tr>
@@ -43,7 +47,7 @@
             </tr>
           </tbody>
         </table>
-        
+
         <button class="Btn">로그인</button>
         <a id="loginLink" href="/signup">가입하러 가기</a>
       </form>
