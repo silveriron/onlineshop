@@ -1,17 +1,44 @@
 const authModels = require("../models/auth.models");
+const authCheck = require('../util/authCheck')
 
 const getSignUp = (req, res) => {
-  res.render("admin/signup");
+  let inputData = authCheck.inputDataLoad(req)
+
+  if (!inputData) {
+    inputData = {
+      email: '',
+      name: '',
+      address: '',
+
+    }
+  }
+
+  res.render("admin/signup", {inputData: inputData});
 };
 
 const getLogin = (req, res) => {
-  res.render("admin/login");
+  let inputData = authCheck.inputDataLoad(req)
+
+  if (!inputData) {
+    inputData = {
+      email: '',
+      password: '',
+
+    }
+  }
+
+  res.render("admin/login", {inputData: inputData});
 };
 
 const getAdmin = (req, res) => {};
 
 const signUp = async (req, res) => {
   const data = req.body;
+  const formData = {
+    email: data.email,
+    name: data.name,
+    address: data.address,
+  }
   if (
     !data.email ||
     !data.email.includes("@") ||
@@ -21,16 +48,24 @@ const signUp = async (req, res) => {
     data.password < 6 ||
     data.password !== data["confirm-password"]
   ) {
-    console.log("가입 양식 문제");
-    res.redirect("/signup");
+    authCheck.inputDataSessionSave(req, {
+      errorMassage: "입력하신 내용을 다시 확인해주세요.",
+      ...formData
+    }, () => {
+      res.redirect("/signup");
+    })
     return;
   }
 
   const alreadyEmail = await authModels.checkAlreadySignup(data.email);
 
   if (alreadyEmail) {
-    console.log("중복 가입");
-    res.redirect("/signup");
+    authCheck.inputDataSessionSave(req, {
+      errorMassage: "이미 가입된 메일 주소입니다. \r다른 아이디로 가입하시거나 로그인 해주세요.",
+      ...formData
+    }, () => {
+      res.redirect("/signup");
+    })
     return;
   }
 
@@ -40,18 +75,29 @@ const signUp = async (req, res) => {
 
 const login = async (req, res) => {
   const data = req.body;
-  const checkLogin = await authModels.login(data.email, data.password);
-  if (!checkLogin === "login") {
-    console.log(checkLogin);
-    res.redirect("/login");
-    return;
+  const loginData = {
+    email: data.email,
+    password: data.password
   }
-  req.session.isAuth = true;
+  const checkLogin = await authModels.login(data.email, data.password);
+
+  if (checkLogin === "login") {
+    req.session.isAuth = true;
   req.session.email = data.email;
   req.session.name = data.name;
   req.session.save(() => {
     res.redirect("/");
   });
+  }
+  else {
+    authCheck.inputDataSessionSave(req, {
+      errorMassage: "입력하신 이메일과 비밀번호를 확인해주세요.",
+      ...loginData
+    }, () => {
+      res.redirect('/login')
+    })
+  }
+
 };
 
 const logout = (req, res) => {

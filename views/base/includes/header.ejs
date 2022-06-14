@@ -8,7 +8,17 @@
     <li>
       <a href="/login">로그인</a>
     </li>
-    <% } %> <% if (locals.isAuth) { %>
+    <% } %> 
+    <li>
+      <a href="">상품리스트</a>
+    </li>
+    <li>
+      <a href="">장바구니</a>
+    </li>
+    <% if (locals.isAuth) { %>
+      <li>
+        <a href="">주문목록</a>
+      </li>
     <li>
       <a href="/logout">로그아웃</a>
     </li>

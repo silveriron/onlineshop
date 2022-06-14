@@ -1,32 +1,53 @@
 h1 {
   text-align: center;
+  margin-bottom: 4rem;
+}
+
+h2 {
+  text-align: center;
 }
 
 main {
-  width: 25rem;
+  width: 100%;
+  max-width: 40rem;
   margin: 36px auto;
   padding: 24px;
-  background-color: var(--color-primary-100);
   border-radius: 4px;
   color: var(--color-black-300);
 }
 
+th {
+  width: 10rem;
+  text-align: start;
+}
+
+td {
+  width: 20rem;
+}
+
 form label {
-  display: block;
   text-align: center;
   width: 100%;
 }
 
-form hr {
+hr {
   margin: 24px auto;
-  width: 90%;
+  border: 1px solid var(--color-black-100);
 }
 
 form input {
-  display: block;
-  margin: var(--space-2) auto;
   width: 90%;
-  height: var(--space-6);
+  margin: var(--space-2) auto;
+  height: var(--space-8);
+  border: 1px solid var(--color-black-100);
+  border-radius: 4px;
+}
+
+#invalidPassword {
+  color: red;
+  font-weight: bold;
+  font-size: 10px;
+  margin: 0px;
 }
 
 form button {

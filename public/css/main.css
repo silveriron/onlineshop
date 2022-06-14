@@ -27,7 +27,7 @@ body {
 header {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: var(--space-4) 0;
 
 }
@@ -42,18 +42,19 @@ header {
 
 #logo {
     text-align: center;
-    flex: 1;
+    padding: 0 4rem;
+    font-size: var(--space-6);
 }
 
 header ul {
     display: flex;
-    flex: 4;
     justify-content: space-around;
+    padding: var(--space-4) 4rem;
 }
 
 li {
     list-style: none;
-    margin: 0;
+    margin: 0 var(--space-6);
     padding: 0;
     
 }
