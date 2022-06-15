@@ -9,11 +9,17 @@ h2 {
 
 main {
   width: 100%;
-  max-width: 40rem;
+  max-width: 60rem;
   margin: 36px auto;
   padding: 24px;
   border-radius: 4px;
   color: var(--color-black-300);
+}
+
+form {
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
 }
 
 th {
@@ -59,8 +65,11 @@ form input {
   resize: none;
 }
 
+form #btnDiv {
+  text-align: center;
+}
+
 form button {
-  display: block;
   margin: var(--space-4) auto;
   padding: var(--space-2) var(--space-6);
   border: 0;

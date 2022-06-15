@@ -91,9 +91,9 @@ const login = async (req, res) => {
 
   if (userData) {
     req.session.isAuth = true;
-    req.session.email = user.email;
-    req.session.name = user.name;
-    req.session.isAdmin = user.isAdmin;
+    req.session.email = userData.email;
+    req.session.name = userData.name;
+    req.session.isAdmin = userData.isAdmin;
     req.session.save(() => {
       res.redirect("/");
     });

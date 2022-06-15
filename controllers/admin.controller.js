@@ -1,22 +1,25 @@
 const Product = require('../models/product.models')
 
-const getAdminProduct = (req, res) => {
-  res.render("admin/product");
+const getAdminProduct = async (req, res) => {
+  const product = new Product()
+  const products = await product.load()
+  res.render("admin/productManage", {products: products});
 };
 
 const adminProduct = (req, res) => {
   const data = req.body
   const product = new Product(data.title, data.summary, data.price, data.content, req.file.filename)
   product.save()
-  res.redirect('/admin/product');
+  
+  res.redirect('/admin/productManage');
 };
 
 const getAdminOrder = (req, res) => {
-  res.render("admin/product");
+  res.render("admin/includes/productList");
 };
 
 const adminOrder = (req, res) => {
-  res.render("admin/product");
+  res.render("admin/productManage");
 };
 
 module.exports = {

@@ -19,6 +19,11 @@ class Product {
         }
         await db.getDb().collection('product').insertOne(product)
     }
+
+    async load() {
+        const product = await db.getDb().collection('product').find().toArray()
+        return product
+    }
 }
 
 module.exports = Product
