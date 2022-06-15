@@ -1,11 +1,14 @@
+const Product = require('../models/product.models')
+
 const getAdminProduct = (req, res) => {
   res.render("admin/product");
 };
 
 const adminProduct = (req, res) => {
-  console.log(req.body)
-  console.log(req.file)
-  res.render("admin/product");
+  const data = req.body
+  const product = new Product(data.title, data.summary, data.price, data.content, req.file.filename)
+  product.save()
+  res.redirect('/admin/product');
 };
 
 const getAdminOrder = (req, res) => {
