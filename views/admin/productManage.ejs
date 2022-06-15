@@ -10,7 +10,12 @@
     <main>
       <h1>상품관리</h1>
       <section>
-        <form action="/admin/product?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+        <form
+          action="/admin/product?_csrf=<%= locals.csrfToken %>"
+          method="POST"
+          enctype="multipart/form-data"
+          accept-charset="UTF-8"
+        >
           <h2>상품추가</h2>
           <table>
             <tbody>
@@ -27,7 +32,7 @@
                   <label for="summary">요약정보</label>
                 </th>
                 <td>
-                  <input id="summary" name="summary" type="summary" required />
+                  <input id="summary" name="summary" type="text" required />
                 </td>
               </tr>
               <tr>
@@ -50,7 +55,24 @@
                   <label for="content">상품설명</label>
                 </th>
                 <td>
-                  <textarea id="content" name="content" rows="10"  required></textarea>
+                  <textarea
+                    id="content"
+                    name="content"
+                    rows="10"
+                    required
+                  ></textarea>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <label for="category">카테고리</label>
+                </th>
+                <td>
+                  <select id="category">
+                    <option value="food">식품</option>
+                    <option value="cosmetics">화장품</option>
+                    <option value="pet">애완용품</option>
+                  </select>
                 </td>
               </tr>
               <tr>
@@ -58,24 +80,27 @@
                   <label for="img">이미지</label>
                 </th>
                 <td>
-                  <input id="img" name="img" type="file" accept="image/*" required />
+                  <input
+                    id="img"
+                    name="img"
+                    type="file"
+                    accept="image/*"
+                    required
+                  />
                 </td>
               </tr>
             </tbody>
           </table>
           <div id="btnDiv">
-            <button>숨기기</button>
-            <button>업데이트</button>
+            <button>상품추가</button>
           </div>
         </form>
       </section>
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        <% for (const product of products) { %>
-          <%- include('../customer/includes/product', {product: product}) %>
-        <% } %>
+        <% for (const product of products) { %> <%-
+        include('../customer/includes/product', {product: product}) %> <% } %>
       </div>
-      <section>
-      </section>
+      <section></section>
     </main>
   </body>
 </html>

@@ -43,7 +43,7 @@ app.use(csurf());
 app.use(csrfToken);
 app.use(checkAuth);
 
-app.use(customerRouter);
+app.use("/customer", customerRouter);
 app.use("/admin", adminRouter);
 app.use(authRouter);
 
