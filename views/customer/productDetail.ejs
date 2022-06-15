@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../base/includes/head', {title: product.title})%>
+    <link rel="stylesheet" href=" /css/product.css" />
+</head>
+<body>
+    <%- include('../base/includes/header') %>
+    <main>
+        <section>
+            <h1 class="orderTitle"><%= product.title %></h1>
+            <div class="orderForm">
+                <div class="orderDiv">
+                    <img src="/img/<%= product.filename %>" alt="<%= product.title %>">
+                </div>
+                <form class="orderDiv orderMenu">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <p>가격</p>
+                                </th>
+                                <td>
+                                    <p><%= product.commasPrice %></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label for="orderCount">수량</label>
+                                </th>
+                                <td>
+                                    <input id="orderCount" name="orderCount" type="number" min="1" step="1" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="btnDiv">
+                        <button>장바구니 담기</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section>
+            <p><%= product.content %></p>
+        </section>
+    </main>
+</body>
+</html>

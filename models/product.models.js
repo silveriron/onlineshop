@@ -1,5 +1,6 @@
 const db = require("../data/database");
 const numberWithCommas = require("../util/numberWithCommas");
+const ObjectId = require('mongodb').ObjectId
 
 class Product {
   constructor(title, summary, price, content, category, filename) {
@@ -31,6 +32,14 @@ class Product {
       product.commasPrice = commasPrice;
     });
     return products;
+  }
+
+  async loadOne(id) {
+    const product = await db.getDb().collection("product").findOne({_id: ObjectId(id)})
+    const price = product.price;
+    const commasPrice = numberWithCommas(price) + "원";
+    product.commasPrice = commasPrice;
+    return product
   }
 }
 

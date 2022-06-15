@@ -6,4 +6,6 @@ const customerController = require("../controllers/customer.controller");
 
 router.get("/product", customerController.getCustomerProduct);
 
+router.get("/product/:id", customerController.getProductDetail)
+
 module.exports = router;
