@@ -1,40 +1,46 @@
 const db = require("../data/database");
 const bcrypt = require("bcrypt");
 
-const signup = async (email, password, name, address) => {
-  const hashedPassword = await bcrypt.hash(password, 14);
-  await db.getDb().collection("member").insertOne({
-    email,
-    password: hashedPassword,
-    name,
-    address,
-  });
-};
+class User {
+  constructor(email, password, name, address) {
+    this.email = email;
+    this.password = password;
+    this.name = name;
+    this.address = address
+  };
 
-const checkAlreadySignup = async (email) => {
-  const AlreadyEmail = await db
-    .getDb()
-    .collection("member")
-    .findOne({ email: email });
-  return AlreadyEmail;
-};
+  async signup() {
+    const hashedPassword = await bcrypt.hash(this.password, 14);
+    await db.getDb().collection("member").insertOne({
+      email: this.email,
+      password: hashedPassword,
+      name: this.name,
+      address: this.address,
+    });
+  };
 
-const login = async (email, password) => {
-  const user = await db.getDb().collection("member").findOne({ email });
-  if (!user) {
-    return;
-  }
+  async checkAlreadySignup() {
+    const AlreadyEmail = await db
+      .getDb()
+      .collection("member")
+      .findOne({ email: this.email });
+    return AlreadyEmail;
+  };
 
-  const checkPassword = await bcrypt.compare(password, user.password);
-  if (!checkPassword) {
-    return;
-  }
+  async login() {
+    const user = await db.getDb().collection("member").findOne({ email: this.email });
+    if (!user) {
+      return;
+    }
+  
+    const checkPassword = await bcrypt.compare(this.password, user.password);
+    if (!checkPassword) {
+      return;
+    }
+  
+    return user;
+  };
+}
 
-  return user;
-};
 
-module.exports = {
-  signup: signup,
-  checkAlreadySignup: checkAlreadySignup,
-  login: login,
-};
+module.exports = User

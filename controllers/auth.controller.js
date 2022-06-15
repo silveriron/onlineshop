@@ -1,4 +1,4 @@
-const authModels = require("../models/auth.models");
+const User = require("../models/auth.models");
 const authCheck = require("../util/authCheck");
 
 const getSignUp = (req, res) => {
@@ -30,6 +30,8 @@ const getLogin = (req, res) => {
 
 const signUp = async (req, res) => {
   const data = req.body;
+  const user = new User(data.email, data.password, data.name, data.address)
+
   const formData = {
     email: data.email,
     name: data.name,
@@ -57,7 +59,7 @@ const signUp = async (req, res) => {
     return;
   }
 
-  const alreadyEmail = await authModels.checkAlreadySignup(data.email);
+  const alreadyEmail = await user.checkAlreadySignup()
 
   if (alreadyEmail) {
     authCheck.inputDataSessionSave(
@@ -74,19 +76,20 @@ const signUp = async (req, res) => {
     return;
   }
 
-  await authModels.signup(data.email, data.password, data.name, data.address);
+  await user.signup();
   res.redirect("/login");
 };
 
 const login = async (req, res) => {
   const data = req.body;
+  const user = new User(data.email, data.password, data.name, data.address)
   const loginData = {
     email: data.email,
     password: data.password,
   };
-  const user = await authModels.login(data.email, data.password);
+  const userData = await user.login();
 
-  if (user) {
+  if (userData) {
     req.session.isAuth = true;
     req.session.email = user.email;
     req.session.name = user.name;
