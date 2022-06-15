@@ -1,4 +1,5 @@
 const db = require('../data/database')
+const numberWithCommas = require('../util/numberWithCommas')
 
 class Product {
     constructor(title, summary, price, content, filename) {
@@ -21,8 +22,13 @@ class Product {
     }
 
     async load() {
-        const product = await db.getDb().collection('product').find().toArray()
-        return product
+        const products = await db.getDb().collection('product').find().toArray()
+        products.map(product => {
+            const price = product.price;
+            const commasPrice = numberWithCommas(price) + '원';
+            product.commasPrice = commasPrice
+        })
+        return products
     }
 }
 

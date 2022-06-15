@@ -11,7 +11,7 @@ const adminProduct = (req, res) => {
   const product = new Product(data.title, data.summary, data.price, data.content, req.file.filename)
   product.save()
   
-  res.redirect('/admin/productManage');
+  res.redirect('/admin/product');
 };
 
 const getAdminOrder = (req, res) => {
