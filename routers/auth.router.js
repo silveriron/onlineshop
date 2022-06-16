@@ -3,6 +3,11 @@ const router = express.Router();
 
 const authController = require("../controllers/auth.controller");
 
+router.get("/", (req, res) => {
+  req.session.cartList = [];
+  res.redirect('/customer/product')
+})
+
 router.get("/signup", authController.getSignUp);
 
 router.post("/signup", authController.signUp);

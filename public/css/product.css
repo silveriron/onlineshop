@@ -73,3 +73,7 @@ form button:hover {
   cursor: pointer;
   background-color: var(--color-primary-400);
 }
+
+.content {
+  text-align: center;
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../base/includes/head', {title: "장바구니"})%>
+    <script src="/script/cart.js" defer ></script>    
+</head>
+<body>
+    <%- include('../base/includes/header') %>
+    <main>
+        <h1>장바구니</h1>
+        <section class="cartList">
+            <% for (const product of locals.cartList) { %>
+                <%- include('./includes/cartContent', {product: product}) %>
+            <% } %>
+        </section>
+        <section class="cartOrder">
+
+        </section>
+    </main>
+</body>
+</html>
