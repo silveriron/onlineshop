@@ -91,9 +91,12 @@ const login = async (req, res) => {
 
   if (userData) {
     req.session.isAuth = true;
-    req.session.email = userData.email;
-    req.session.name = userData.name;
     req.session.isAdmin = userData.isAdmin;
+    req.session.user = {
+      eamil: userData.email,
+      name: userData.name,
+      address: userData.address,      
+    }
     req.session.save(() => {
       res.redirect("/");
     });
@@ -114,8 +117,7 @@ const login = async (req, res) => {
 const logout = (req, res) => {
   req.session.isAuth = null;
   req.session.isAdmin = null;
-  req.session.email = null;
-  req.session.name = null;
+  req.session.user = null;
   req.session.save(() => {
     res.redirect("/");
   });

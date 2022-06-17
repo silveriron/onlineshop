@@ -2,20 +2,55 @@
 <html lang="en">
 <head>
     <%- include('../base/includes/head', {title: "장바구니"})%>
+    <link href="/css/cart.css" rel="stylesheet">
     <script src="/script/cart.js" defer ></script>    
 </head>
 <body>
     <%- include('../base/includes/header') %>
     <main>
         <h1>장바구니</h1>
-        <section class="cartList">
-            <% for (const product of locals.cartList) { %>
-                <%- include('./includes/cartContent', {product: product}) %>
-            <% } %>
-        </section>
-        <section class="cartOrder">
-
-        </section>
+        <form class="cartList" action="/customer/cart" method="POST">
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" >
+            <section class="productList">
+                <% for (const product of locals.cartList) { %>
+                    <%- include('./includes/cartContent', {product: product}) %>
+                <% } %>
+            </section>
+            <section class="cartOrder">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <p>받으시는분</p>
+                                </th>
+                                <td>
+                                    <p><%= locals.user.name %></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <p>주소</p>
+                                </th>
+                                <td>
+                                    <p><%= locals.user.address %></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <p>총 가격</p>
+                                </th>
+                                <td>
+                                    <p id="cartTotalPrice"></p>
+                                    <input id="orderPrice" type="hidden" name="orderPrice" value="">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="btnDiv">
+                        <button>주문하기</button>
+                    </div>
+            </section>
+        </form>
     </main>
 </body>
 </html>

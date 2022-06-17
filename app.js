@@ -10,6 +10,7 @@ const checkAuth = require("./middlewares/checkAuth");
 const errorHandler = require("./middlewares/errorHandler");
 const cartIn = require('./middlewares/cartIn')
 
+
 const MongoDBStore = require("connect-mongodb-session")(session);
 const store = new MongoDBStore({
   uri: "mongodb://localhost:27017",
@@ -43,7 +44,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(csurf());
 app.use(csrfToken);
 app.use(checkAuth);
-app.use(cartIn)
+app.use(cartIn);
 
 
 app.use("/customer", customerRouter);

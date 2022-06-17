@@ -3,7 +3,7 @@ const Product = require("../models/product.models");
 const getCustomerProduct = async (req, res) => {
   const category = req.query.category
   const product = new Product();
-  const products = await product.load();
+  const products = await product.load(category);
   res.render("customer/productPage", { products: products });
 };
 
@@ -41,9 +41,24 @@ const getCart = (req, res) => {
   res.render("customer/cartList")
 }
 
+const cart = (req, res) => {
+  console.log(res.locals.user, res.locals.cartList)
+}
+
+const cartDelete = (req, res) => {
+  const title = req.params.title
+  const cartList = req.session.cartList.filter(product => product.title !== title);
+  req.session.cartList = cartList;
+  req.session.save(() => {
+    res.redirect('/customer/cart')
+  })
+}
+
 module.exports = {
   getCustomerProduct: getCustomerProduct,
   getProductDetail: getProductDetail,
   cartIn: cartIn,
-  getCart: getCart
+  getCart: getCart,
+  cart: cart,
+  cartDelete: cartDelete,
 };

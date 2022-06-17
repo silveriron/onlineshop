@@ -25,12 +25,25 @@ class Product {
   }
 
   async load(category) {
-    const products = await db.getDb().collection("product").find().toArray();
-    products.map((product) => {
-      const price = product.price;
+    let products
+    if (category) {
+      products = await db.getDb().collection("product").find({category: category}).toArray();
+      console.log(products)
+    } else {
+      products = await db.getDb().collection("product").find().toArray();
+    }
+
+    if (products.length === 1) {
+      const price = products[0].price;
       const commasPrice = numberWithCommas(price) + "원";
-      product.commasPrice = commasPrice;
-    });
+      products[0].commasPrice = commasPrice;
+    } else {
+      products.map((product) => {
+        const price = product.price;
+        const commasPrice = numberWithCommas(price) + "원";
+        product.commasPrice = commasPrice;
+      });
+    }
     return products;
   }
 
