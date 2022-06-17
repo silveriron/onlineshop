@@ -24,15 +24,19 @@
                                     <p>받으시는분</p>
                                 </th>
                                 <td>
-                                    <p><%= locals.user.name %></p>
-                                </td>
+                                    <% if (locals.user) { %>
+                                        <p><%= locals.user.name %></p>
+                                    <% } %>
+                                    </td>
                             </tr>
                             <tr>
                                 <th>
                                     <p>주소</p>
                                 </th>
                                 <td>
-                                    <p><%= locals.user.address %></p>
+                                    <% if (locals.user) { %>
+                                        <p><%= locals.user.address %></p>
+                                    <% } %>
                                 </td>
                             </tr>
                             <tr>

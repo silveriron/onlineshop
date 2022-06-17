@@ -21,20 +21,50 @@ const cartIn = async (req, res) => {
   const data = req.body
   const cartProduct = {
     ...productData,
-    ordercount: +data.orderCount
-  }
-  const cartList = req.session.cartList
-
-  if (!cartList) {
-    req.session.cartList = []
+    orderCount: +data.orderCount
   }
 
-  req.session.cartList.push(cartProduct)
-  req.session.save(() => {
-    console.log(req.session.cartList)
-    res.redirect('/customer/cart')
-  })
+  const save = () => {
+    req.session.save(()=> {
+      res.redirect('/customer/cart')
+    })
+  }
 
+  if (!req.session.cartList) {
+    req.session.cartList = [];
+    req.session.cartList.push(cartProduct)
+    save();
+    return
+  }
+
+  if (req.session.cartList.length === 1) {
+    if (req.session.cartList[0].title === cartProduct.title) {
+      req.session.cartList[0].orderCount += cartProduct.orderCount
+      save();
+      return
+    } else {
+      req.session.cartList.push(cartProduct)
+      save();
+      return
+    }
+  }
+
+  if (req.session.cartList.length > 1) {
+    let same = 0;
+    req.session.cartList.map(item => {
+      if (item.title === cartProduct.title) {
+        item.orderCount += cartProduct.orderCount;
+        same += 1;
+      }
+    })
+    if (!same) {
+      req.session.cartList.push(cartProduct)
+      save();
+      return
+    }
+    save();
+    return
+  }
 }
 
 const getCart = (req, res) => {
