@@ -24,7 +24,7 @@ class Product {
     await db.getDb().collection("product").insertOne(product);
   }
 
-  async load() {
+  async load(category) {
     const products = await db.getDb().collection("product").find().toArray();
     products.map((product) => {
       const price = product.price;

@@ -1,6 +1,7 @@
 const Product = require("../models/product.models");
 
 const getCustomerProduct = async (req, res) => {
+  const category = req.query.category
   const product = new Product();
   const products = await product.load();
   res.render("customer/productPage", { products: products });

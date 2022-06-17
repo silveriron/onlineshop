@@ -6,8 +6,9 @@ const getAdminProduct = async (req, res) => {
   res.render("admin/productManage", { products: products });
 };
 
-const adminProduct = (req, res) => {
+const adminProduct = async (req, res) => {
   const data = req.body;
+  console.log(data)
   const product = new Product(
     data.title,
     data.summary,
@@ -16,7 +17,7 @@ const adminProduct = (req, res) => {
     data.category,
     req.file.filename
   );
-  product.save();
+  await product.save();
 
   res.redirect("/admin/product");
 };
