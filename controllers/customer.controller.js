@@ -36,6 +36,12 @@ const cartIn = async (req, res) => {
     save();
     return
   }
+  
+  if (Array.isArray(req.session.cartList) && req.session.cartList.length === 0) {
+    req.session.cartList.push(cartProduct)
+    save();
+    return
+  }
 
   if (req.session.cartList.length === 1) {
     if (req.session.cartList[0].title === cartProduct.title) {
@@ -65,6 +71,7 @@ const cartIn = async (req, res) => {
     save();
     return
   }
+  console.log('error')
 }
 
 const getCart = (req, res) => {
