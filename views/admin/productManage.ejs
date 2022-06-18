@@ -4,6 +4,7 @@
     <%- include('../base/includes/head', {title: '상품관리'})%>
     <link rel="stylesheet" href=" /css/form.css" />
     <link rel="stylesheet" href=" /css/product.css" />
+    <script src="/script/admin.js" defer></script>
   </head>
   <body>
     <%- include('../base/includes/header') %>
@@ -96,11 +97,12 @@
           </div>
         </form>
       </section>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <% for (const product of products) { %> <%-
-        include('../customer/includes/product', {product: product}) %> <% } %>
-      </div>
-      <section></section>
+      <section>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <% for (const product of products) { %> <%-
+          include('../customer/includes/product', {product: product}) %> <% } %>
+        </div>
+      </section>
     </main>
   </body>
 </html>

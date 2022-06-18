@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../base/includes/head', {title: '상품관리'})%>
+    <link rel="stylesheet" href=" /css/form.css" />
+    <link rel="stylesheet" href=" /css/product.css" />
+  </head>
+  <body>
+    <%- include('../base/includes/header') %>
+    <h1>상품수정</h1>
+    <section>
+      <form
+        action="/admin/product/<%= product._id %>/update?_csrf=<%= locals.csrfToken %>"
+        method="POST"
+        enctype="multipart/form-data"
+        accept-charset="UTF-8"
+      >
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                <label for="title">상품이름</label>
+              </th>
+              <td>
+                <input
+                  id="title"
+                  name="title"
+                  type="text"
+                  value="<%= product.title %>"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="summary">요약정보</label>
+              </th>
+              <td>
+                <input
+                  id="summary"
+                  name="summary"
+                  type="text"
+                  value="<%= product.summary %>"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="price">가격</label>
+              </th>
+              <td>
+                <input
+                  id="price"
+                  name="price"
+                  type="number"
+                  min="100"
+                  step="100"
+                  value="<%= product.price %>"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="content">상품설명</label>
+              </th>
+              <td>
+                <textarea id="content" name="content" rows="10" required>
+<%= product.content %></textarea
+                >
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="category">카테고리</label>
+              </th>
+              <td>
+                <select name="category" id="category">
+                  <% if (product.category === "food") { %>
+                  <option value="food">식품</option>
+                  <% } else if (product.category === "cosmetics") { %>
+                  <option value="cosmetics">화장품</option>
+                  <% } else if (product.category === "pet") { %>
+                  <option value="pet">애완용품</option>
+                  <% } %>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="img">이미지</label>
+              </th>
+              <td>
+                <input id="img" name="img" type="file" accept="image/*" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div id="btnDiv">
+          <button>상품수정</button>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>

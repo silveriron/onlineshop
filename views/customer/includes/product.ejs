@@ -1,13 +1,32 @@
+<% if (!locals.isAdmin) { %>
 <a href="/customer/product/<%= product._id %>">
+  <% } %>
   <div class="col">
     <div class="card">
-        <img src="/img/<%= product.filename %>" class="card-img-top" alt="<%= product.title %>">
-        <div class="card-body">
-          <h5 class="card-title"><%= product.title %></h5>
-          <p class="card-text"><%= product.commasPrice %></p>
-          <p class="card-text, summary"><%= product.summary %></p>
-        </div>
+      <img
+        src="/img/<%= product.filename %>"
+        class="card-img-top"
+        alt="<%= product.title %>"
+      />
+      <div class="card-body">
+        <h5 class="card-title"><%= product.title %></h5>
+        <p class="card-text"><%= product.commasPrice %></p>
+        <p class="card-text, summary"><%= product.summary %></p>
+        <% if (locals.isAdmin) { %>
+        <a class="updateBtn" href="/admin/product/<%= product._id %>/update"
+          >수정</a
+        >
+        <button
+          id="deleteBtn"
+          data-id="<%= product._id %>"
+          data-csrftoken="<%= locals.csrfToken %>"
+        >
+          삭제
+        </button>
+        <% } %>
+      </div>
     </div>
   </div>
+  <% if (!locals.isAdmin) { %>
 </a>
-
+<% } %>

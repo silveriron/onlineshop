@@ -7,10 +7,10 @@
   color: var(--color-primary-300);
 }
 
-
 img {
   height: 200px;
   object-fit: cover;
+  border-radius: 4px;
 }
 
 .summary {
@@ -20,7 +20,6 @@ img {
 .orderTitle {
   margin-bottom: var(--space-8);
   text-align: center;
-
 }
 
 .orderForm {
@@ -49,8 +48,6 @@ img {
   justify-content: space-around;
 }
 
-
-
 th {
   width: 10rem;
   text-align: start;
@@ -68,7 +65,9 @@ form #btnDiv {
   /* text-align: center; */
 }
 
-form button {
+form button,
+.updateBtn,
+#deleteBtn {
   margin: var(--space-4) auto;
   padding: var(--space-2) var(--space-6);
   border: 0;
@@ -79,7 +78,9 @@ form button {
   box-shadow: 1px 1px 1px var(--color-primary-300);
 }
 
-form button:hover {
+form button:hover,
+.updateBtn:hover,
+#deleteBtn:hover {
   cursor: pointer;
   background-color: var(--color-primary-400);
 }
@@ -87,3 +88,12 @@ form button:hover {
 .content {
   text-align: center;
 }
+
+/* .updateBtn {
+  padding: var(--space-2) var(--space-6);
+  border-radius: 4px;
+  background-color: var(--color-primary-300);
+  box-shadow: 1px 1px 1px var(--color-primary-300);
+
+
+} */

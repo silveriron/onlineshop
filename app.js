@@ -8,8 +8,7 @@ const session = require("express-session");
 const csrfToken = require("./middlewares/csrfToken");
 const checkAuth = require("./middlewares/checkAuth");
 const errorHandler = require("./middlewares/errorHandler");
-const cartIn = require('./middlewares/cartIn')
-
+const cartIn = require("./middlewares/cartIn");
 
 const MongoDBStore = require("connect-mongodb-session")(session);
 const store = new MongoDBStore({
@@ -44,8 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(csurf());
 app.use(csrfToken);
 app.use(checkAuth);
-app.use(cartIn);
-
+// app.use(cartIn);
 
 app.use("/customer", customerRouter);
 app.use("/admin", adminRouter);

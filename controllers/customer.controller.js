@@ -1,95 +1,100 @@
 const Product = require("../models/product.models");
 
 const getCustomerProduct = async (req, res) => {
-  const category = req.query.category
+  const category = req.query.category;
   const product = new Product();
   const products = await product.load(category);
   res.render("customer/productPage", { products: products });
 };
 
 const getProductDetail = async (req, res) => {
-  const id = req.params.id
-  const product = new Product()
-  const productData = await product.loadOne(id)
-  res.render("customer/productDetail", { product: productData})
-}
+  const id = req.params.id;
+  const product = new Product();
+  const productData = await product.loadOne(id);
+  res.render("customer/productDetail", { product: productData });
+};
 
 const cartIn = async (req, res) => {
-  const id = req.params.id
-  const product = new Product()
-  const productData = await product.loadOne(id)
-  const data = req.body
+  const id = req.params.id;
+  const product = new Product();
+  const productData = await product.loadOne(id);
+  const data = req.body;
   const cartProduct = {
     ...productData,
-    orderCount: +data.orderCount
-  }
+    orderCount: +data.orderCount,
+  };
 
   const save = () => {
-    req.session.save(()=> {
-      res.redirect('/customer/cart')
-    })
-  }
+    req.session.save(() => {
+      res.redirect("/customer/cart");
+    });
+  };
 
   if (!req.session.cartList) {
     req.session.cartList = [];
-    req.session.cartList.push(cartProduct)
+    req.session.cartList.push(cartProduct);
     save();
-    return
+    return;
   }
-  
-  if (Array.isArray(req.session.cartList) && req.session.cartList.length === 0) {
-    req.session.cartList.push(cartProduct)
+
+  if (
+    Array.isArray(req.session.cartList) &&
+    req.session.cartList.length === 0
+  ) {
+    req.session.cartList.push(cartProduct);
     save();
-    return
+    return;
   }
 
   if (req.session.cartList.length === 1) {
     if (req.session.cartList[0].title === cartProduct.title) {
-      req.session.cartList[0].orderCount += cartProduct.orderCount
+      req.session.cartList[0].orderCount += cartProduct.orderCount;
       save();
-      return
+      return;
     } else {
-      req.session.cartList.push(cartProduct)
+      req.session.cartList.push(cartProduct);
       save();
-      return
+      return;
     }
   }
 
   if (req.session.cartList.length > 1) {
     let same = 0;
-    req.session.cartList.map(item => {
+    req.session.cartList.map((item) => {
       if (item.title === cartProduct.title) {
         item.orderCount += cartProduct.orderCount;
         same += 1;
       }
-    })
+    });
     if (!same) {
-      req.session.cartList.push(cartProduct)
+      req.session.cartList.push(cartProduct);
       save();
-      return
+      return;
     }
     save();
-    return
+    return;
   }
-  console.log('error')
-}
+  console.log("error");
+};
 
 const getCart = (req, res) => {
-  res.render("customer/cartList")
-}
+  res.render("customer/cartList");
+};
 
 const cart = (req, res) => {
-  console.log(res.locals.user, res.locals.cartList)
-}
+  console.log(res.locals.user, res.locals.cartList);
+};
 
 const cartDelete = (req, res) => {
-  const title = req.params.title
-  const cartList = req.session.cartList.filter(product => product.title !== title);
+  const title = req.params.title;
+  const cartList = req.session.cartList.filter(
+    (product) => product.title !== title
+  );
   req.session.cartList = cartList;
   req.session.save(() => {
-    res.redirect('/customer/cart')
-  })
-}
+    res.redirect("/customer/cart");
+  });
+};
 
 module.exports = {
   getCustomerProduct: getCustomerProduct,
