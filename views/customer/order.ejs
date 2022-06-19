@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../base/includes/head', {title: '주문목록'})%>
+  </head>
+  <body>
+    <%- include('../base/includes/header') %>
+    <main>
+      <% for (const orderList of orderLists) { %> <%-
+      include('./includes/orderContent', {orderList: orderList}) %> <% } %>
+    </main>
+  </body>
+</html>

@@ -17,4 +17,6 @@ router.post("/cart", customerController.cart);
 
 router.get("/cart/:title/delete", customerController.cartDelete);
 
+router.get("/order", customerController.getOrder);
+
 module.exports = router;

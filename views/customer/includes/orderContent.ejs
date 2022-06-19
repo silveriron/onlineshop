@@ -1,0 +1,19 @@
+<div class="card mb-3" style="max-width: 100%">
+  <div class="row g-0">
+    <!-- <div class="col-md-4">
+      <img
+        src="/img/<%= product.filename %>"
+        class="img-fluid rounded-start productImg"
+        alt="<%= product.title %>"
+      />
+    </div> -->
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= orderList.title %></h5>
+        <p class="card-text"><%= product.commasPrice %></p>
+        <p class="card-text" id="itemTotalPrice"></p>
+        <a href="/customer/cart/<%= product.title %>/delete">삭제</a>
+      </div>
+    </div>
+  </div>
+</div>

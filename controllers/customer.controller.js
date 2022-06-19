@@ -1,4 +1,5 @@
 const Product = require("../models/product.models");
+const Order = require("../models/order.models");
 
 const getCustomerProduct = async (req, res) => {
   const category = req.query.category;
@@ -81,8 +82,11 @@ const getCart = (req, res) => {
   res.render("customer/cartList");
 };
 
-const cart = (req, res) => {
-  console.log(res.locals.user, res.locals.cartList);
+const cart = async (req, res) => {
+  const order = new Order(res.locals.user, req.session.cartList);
+  await order.save();
+  res.redirect("/customer/order");
+  console.log(res.locals.user, req.session.cartList);
 };
 
 const cartDelete = (req, res) => {
@@ -96,6 +100,12 @@ const cartDelete = (req, res) => {
   });
 };
 
+const getOrder = async (req, res) => {
+  const order = new Order();
+  const orderLists = await order.load(res.locals.user.email);
+  res.render("customer/order", { orderLists: orderLists });
+};
+
 module.exports = {
   getCustomerProduct: getCustomerProduct,
   getProductDetail: getProductDetail,
@@ -103,4 +113,5 @@ module.exports = {
   getCart: getCart,
   cart: cart,
   cartDelete: cartDelete,
+  getOrder: getOrder,
 };

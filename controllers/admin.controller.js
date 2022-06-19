@@ -3,6 +3,9 @@ const fs = require("fs");
 const path = require("path");
 
 const getAdminProduct = async (req, res) => {
+  if (!res.locals.isAdmin) {
+    res.status(404).render("404");
+  }
   const product = new Product();
   const products = await product.load();
   res.render("admin/productManage", { products: products });
@@ -78,6 +81,9 @@ const ProductDelete = async (req, res) => {
 };
 
 const getAdminOrder = (req, res) => {
+  if (!res.locals.isAdmin) {
+    res.status(404).render("404");
+  }
   res.render("admin/includes/productList");
 };
 
