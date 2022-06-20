@@ -28,7 +28,7 @@ th {
 }
 
 td {
-  width: 20rem;
+  width: 25rem;
 }
 
 
@@ -39,7 +39,7 @@ hr {
 }
 
 form input {
-  width: 90%;
+  width: 70%;
   margin: var(--space-2) auto;
   height: var(--space-8);
   border: 1px solid var(--color-black-100);

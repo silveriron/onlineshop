@@ -3,7 +3,8 @@
 <head>
     <%- include('../base/includes/head', {title: "장바구니"})%>
     <link href="/css/cart.css" rel="stylesheet">
-    <script src="/script/cart.js" defer ></script>    
+    <script src="/script/cart.js" defer ></script>
+    <script src="https://js.tosspayments.com/v1"></script>    
 </head>
 <body>
     <%- include('../base/includes/header') %>
@@ -25,7 +26,7 @@
                                 </th>
                                 <td>
                                     <% if (locals.user) { %>
-                                        <p><%= locals.user.name %></p>
+                                        <p id="name"><%= locals.user.name %></p>
                                     <% } %>
                                     </td>
                             </tr>
@@ -51,7 +52,7 @@
                         </tbody>
                     </table>
                     <div id="btnDiv">
-                        <button>주문하기</button>
+                        <button type="button" id="payment-button">주문하기</button>
                     </div>
             </section>
         </form>
