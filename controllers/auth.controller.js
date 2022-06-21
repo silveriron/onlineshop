@@ -32,12 +32,19 @@ const getLogin = (req, res) => {
 
 const signUp = async (req, res) => {
   const data = req.body;
-  const user = new User(data.email, data.password, data.name, data.address)
+  const address = {
+    postcode: data.postcode,
+    address: data.address,
+    detailAddress: data.detailAddress,
+  }
+  const user = new User(data.email, data.password, data.name, address)
 
   const formData = {
     email: data.email,
     name: data.name,
     address: data.address,
+    postcode: data.postcode,
+    detailAddress: data.detailAddress,
   };
   if (
     !data.email ||
@@ -45,6 +52,8 @@ const signUp = async (req, res) => {
     !data.password ||
     !data.name ||
     !data.address ||
+    !data.postcode ||
+    !data.detailAddress ||
     data.password < 6 ||
     data.password !== data["confirm-password"]
   ) {
@@ -84,12 +93,12 @@ const signUp = async (req, res) => {
 
 const login = async (req, res) => {
   const data = req.body;
-  const user = new User(data.email, data.password, data.name, data.address)
+  const user = new User()
   const loginData = {
     email: data.email,
     password: data.password,
   };
-  const userData = await user.login();
+  const userData = await user.login(data.email, data.password);
 
   if (userData) {
     req.session.isAuth = true;

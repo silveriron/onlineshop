@@ -27,13 +27,13 @@ class User {
     return AlreadyEmail;
   };
 
-  async login() {
-    const user = await db.getDb().collection("member").findOne({ email: this.email });
+  async login(email, password) {
+    const user = await db.getDb().collection("member").findOne({ email: email });
     if (!user) {
       return;
     }
   
-    const checkPassword = await bcrypt.compare(this.password, user.password);
+    const checkPassword = await bcrypt.compare(password, user.password);
     if (!checkPassword) {
       return;
     }
