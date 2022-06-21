@@ -32,10 +32,23 @@ td {
 }
 
 
-
 hr {
   margin: 24px auto;
   border: 1px solid var(--color-black-100);
+}
+
+form #duplicateCheck {
+  font-size: 0.5rem;
+  margin: var(--space-4) var(--space-2);
+  height: var(--space-8);
+
+}
+
+form #duplicateAlert,
+form #signUpAvailable {
+  font-size: 0.8rem;
+  color: red;
+  display: none;
 }
 
 form input {

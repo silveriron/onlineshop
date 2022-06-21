@@ -29,7 +29,10 @@
                   value="<%= inputData.email %>"
                   required
                 />
-                <button type="button">중복확인</button>
+                <button id="duplicateCheck" type="button" data-csrfToken="<%= locals.csrfToken %>">중복확인</button>
+                <p id="duplicateAlert">이미 가입된 이메일입니다.</p>
+                <p id="signUpAvailable">가입 가능한 이메일입니다.</p>
+
               </td>
             </tr>
             <tr>

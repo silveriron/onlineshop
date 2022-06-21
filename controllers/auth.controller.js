@@ -123,10 +123,18 @@ const logout = (req, res) => {
   });
 };
 
+const duplicate = async (req, res) => {
+  const email = req.body.email
+  const user = new User(email);
+  const alreadyEmail = await user.checkAlreadySignup()
+  res.json(alreadyEmail)
+}
+
 module.exports = {
   getSignUp: getSignUp,
   getLogin: getLogin,
   signUp: signUp,
   login: login,
   logout: logout,
+  duplicate: duplicate,
 };
