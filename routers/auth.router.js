@@ -20,6 +20,8 @@ router.get("/logout", authController.logout);
 
 router.post("/duplicate", authController.duplicate);
 
+router.post("/checkaddress", authController.checkAddress)
+
 router.get("*", (req, res) => {
   res.status(404).render("base/404");
 });

@@ -1,6 +1,8 @@
 const User = require("../models/auth.models");
 const authCheck = require("../util/authCheck");
 
+const axios = require("axios")
+
 const getSignUp = (req, res) => {
   let inputData = authCheck.inputDataLoad(req);
 
@@ -130,6 +132,24 @@ const duplicate = async (req, res) => {
   res.json(alreadyEmail)
 }
 
+const checkAddress = async (req, res, next) => {
+  const address = req.body.address
+  let response
+    try{
+        response = await axios({
+            method: 'GET',
+            url: 'https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=' + encodeURI(address),
+            headers: {
+                "X-NCP-APIGW-API-KEY-ID": "srqifq9v2a",
+                "X-NCP-APIGW-API-KEY": "AuvoQJ0YRuIhxk01QmeeQ7Upf3HyrBCXNEhWd3Em"
+            }
+        })
+    } catch(error) {
+        next(error);
+    }
+    
+}
+
 module.exports = {
   getSignUp: getSignUp,
   getLogin: getLogin,
@@ -137,4 +157,5 @@ module.exports = {
   login: login,
   logout: logout,
   duplicate: duplicate,
+  checkAddress: checkAddress,
 };

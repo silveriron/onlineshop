@@ -45,7 +45,8 @@ form #duplicateCheck {
 }
 
 form #duplicateAlert,
-form #signUpAvailable {
+form #signUpAvailable,
+form #emailNotInput {
   font-size: 0.8rem;
   color: red;
   display: none;

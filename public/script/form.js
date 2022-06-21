@@ -7,6 +7,7 @@ const duplicateCheckButton = document.querySelector("#duplicateCheck");
 
 const signUpAvailableElement = document.querySelector("#signUpAvailable")
 const duplicateAlertElement = document.querySelector('#duplicateAlert')
+const emailNotInputElement = document.querySelector('#emailNotInput')
 
 
 const emailInputElement = document.querySelector("#email")
@@ -27,6 +28,16 @@ const cheackPassword = () => {
 const duplicateCheck = async () => {
     const email = emailInputElement.value
     const csrfToken = duplicateCheckButton.dataset.csrftoken
+
+    if (!email) {
+        emailNotInputElement.style.display = "block";
+        signUpAvailableElement.style.display = "none";
+        duplicateAlertElement.style.display = "none";
+
+
+
+    }
+
     const response = await fetch(`/duplicate?_csrf=${csrfToken}`, {
         method: "POST",
         body: JSON.stringify({"email": email}),
