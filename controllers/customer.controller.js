@@ -103,7 +103,24 @@ const cartDelete = (req, res) => {
 const getOrder = async (req, res) => {
   const order = new Order();
   const orderLists = await order.load(res.locals.user.email);
-  res.render("customer/order", { orderLists: orderLists });
+  if (!Array.isArray(orderLists) || orderLists.length === 0) {
+    res.render("customer/order", { orderLists: 0 });
+  } else {
+    res.render("customer/order", { orderLists: orderLists });
+  }
+};
+
+const paymentsSuccess = async (req, res) => {
+  const order = new Order(res.locals.user, req.session.cartList);
+  await order.save();
+  req.session.cartList = [];
+  req.session.save(() => {
+    res.redirect("/customer/order");
+  });
+};
+
+const paymentsFail = (req, res) => {
+  res.redirect("/customer/cart");
 };
 
 module.exports = {
@@ -114,4 +131,6 @@ module.exports = {
   cart: cart,
   cartDelete: cartDelete,
   getOrder: getOrder,
+  paymentsSuccess: paymentsSuccess,
+  paymentsFail: paymentsFail,
 };

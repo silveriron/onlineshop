@@ -7,8 +7,20 @@ class Order {
   }
 
   async save() {
+    const title =
+      this.orderList[0].title +
+      " 외" +
+      String(this.orderList.length - 1) +
+      " 건";
+    let totalPrice = 0;
+    for (const orderList of this.orderList) {
+      totalPrice += orderList.price;
+    }
     await db.getDb().collection("order").insertOne({
       user: this.user,
+      title: title,
+      totalPrice: totalPrice,
+      orderStatus: "배송준비중",
       orderList: this.orderList,
     });
   }

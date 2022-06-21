@@ -19,4 +19,8 @@ router.get("/cart/:title/delete", customerController.cartDelete);
 
 router.get("/order", customerController.getOrder);
 
+router.get("/payments/success", customerController.paymentsSuccess);
+
+router.get("/payments/fail", customerController.paymentsFail);
+
 module.exports = router;
