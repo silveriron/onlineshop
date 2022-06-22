@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const uuid = require("uuid")
 
 const authController = require("../controllers/auth.controller");
 
 router.get("/", (req, res) => {
-  req.session.cartList = [];
   res.redirect('/customer/product')
 })
 

@@ -20,6 +20,7 @@ const store = new MongoDBStore({
 const authRouter = require("./routers/auth.router");
 const adminRouter = require("./routers/admin.router");
 const customerRouter = require("./routers/customer.router");
+const { nextTick } = require("process");
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
@@ -54,4 +55,4 @@ app.use(errorHandler);
 
 db.connectToDatabase().then(() => {
   app.listen(3000);
-});
+})

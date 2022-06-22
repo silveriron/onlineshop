@@ -81,10 +81,6 @@ td {
   width: 50px;
 }
 
-form #btnDiv {
-  /* text-align: center; */
-}
-
 form button,
 .updateBtn,
 #deleteBtn {

@@ -2,9 +2,11 @@
   <div class="row g-0">
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title"><%= orderList.title %></h5>
-        <p class="card-text"><%= orderList.totalPrice %></p>
-        <p class="card-text"><%= orderList.orderStatus %></p>
+        <p class="card-text">주문번호 : <%= orderList.id %></p>
+        <h5 class="card-title">주문내역 : <%= orderList.title %></h5>
+        <p class="card-text">금액 : <%= orderList.totalPrice %></p>
+        <p class="card-text">주문날짜 : <%= orderList.date %></p>
+        <p class="card-text">주문상태 : <%= orderList.orderStatus %></p>
       </div>
     </div>
   </div>
