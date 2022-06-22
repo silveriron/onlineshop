@@ -3,11 +3,13 @@
   <% } %>
   <div class="col">
     <div class="card">
-      <img
-        src="<%= product.imgURL %>"
-        class="card-img-top"
-        alt="<%= product.title %>"
-      />
+      <div class="img">
+        <img class="productImg""
+          src="<%= product.imgURL %>"
+          class="card-img-top"
+          alt="<%= product.title %>"
+        />
+      </div>
       <div class="card-body">
         <h5 class="card-title"><%= product.title %></h5>
         <p class="card-text"><%= product.commasPrice %></p>

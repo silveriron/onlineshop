@@ -2,11 +2,16 @@
 <html lang="en">
   <head>
     <%- include('../base/includes/head', {title: '상품리스트'})%>
+    <link rel="stylesheet" href="/css/product.css" />
+    <script src="/script/product.js" defer></script>
   </head>
   <body>
     <%- include('../base/includes/header') %>
-    <link rel="stylesheet" href="/css/product.css" />
+    <section id="carouselDiv">
+      <%- include('./includes/carousel') %>
+    </section>
     <main>
+      
       <section>
         <h1>상품리스트</h1>
         <ul id="categoryList">
@@ -20,8 +25,6 @@
             <a href="/customer/product?category=pet">애완용품</a>
           </li>
         </ul>
-      </section>
-      <section>
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <% for (const product of products) { %> <%-
           include('./includes/product', {product: product}) %> <% } %>
