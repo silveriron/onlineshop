@@ -3,13 +3,13 @@ const numberWithCommas = require("../util/numberWithCommas");
 const ObjectId = require("mongodb").ObjectId;
 
 class Product {
-  constructor(title, summary, price, content, category, filename) {
+  constructor(title, summary, price, content, category, imgURL) {
     this.title = title;
     this.summary = summary;
     this.price = +price;
     this.content = content;
     this.category = category;
-    this.filename = filename;
+    this.imgURL = imgURL;
   }
 
   async save() {
@@ -19,7 +19,7 @@ class Product {
       price: this.price,
       content: this.content,
       category: this.category,
-      filename: this.filename,
+      imgURL: this.imgURL,
     };
     await db.getDb().collection("product").insertOne(product);
   }
@@ -63,42 +63,53 @@ class Product {
   }
 
   async updateOne(id) {
-    if (!this.filename) {
-      console.log("a");
-      await db
-        .getDb()
-        .collection("product")
-        .updateOne(
-          { _id: ObjectId(id) },
-          {
-            $set: {
-              title: this.title,
-              summary: this.summary,
-              price: this.price,
-              content: this.content,
-              category: this.category,
-            },
-          }
-        );
-      return;
-    }
-    await db
-      .getDb()
-      .collection("product")
-      .updateOne(
-        { _id: ObjectId(id) },
-        {
-          $set: {
-            title: this.title,
-            summary: this.summary,
-            price: this.price,
-            content: this.content,
-            category: this.category,
-            filename: this.filename,
-          },
-        }
-      );
+    await db.getDb().collection("product").updateOne({_id: ObjectId(id)}, {$set:{
+      title: this.title,
+      summary: this.summary,
+      price: this.price,
+      content: this.content,
+      category: this.category,
+      imgURL: this.imgURL
+    }})
   }
+
+  // async updateOne(id) {   이미지 파일 업로드 버전
+  //   if (!this.filename) {
+  //     console.log("a");
+  //     await db
+  //       .getDb()
+  //       .collection("product")
+  //       .updateOne(
+  //         { _id: ObjectId(id) },
+  //         {
+  //           $set: {
+  //             title: this.title,
+  //             summary: this.summary,
+  //             price: this.price,
+  //             content: this.content,
+  //             category: this.category,
+  //           },
+  //         }
+  //       );
+  //     return;
+  //   }
+  //   await db
+  //     .getDb()
+  //     .collection("product")
+  //     .updateOne(
+  //       { _id: ObjectId(id) },
+  //       {
+  //         $set: {
+  //           title: this.title,
+  //           summary: this.summary,
+  //           price: this.price,
+  //           content: this.content,
+  //           category: this.category,
+  //           filename: this.filename,
+  //         },
+  //       }
+  //     );
+  // }
 
   async deleteOne(id) {
     await db

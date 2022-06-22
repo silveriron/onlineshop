@@ -19,7 +19,7 @@ const adminProduct = async (req, res) => {
     data.price,
     data.content,
     data.category,
-    req.file.filename
+    data.imgURL
   );
   await product.save();
 
@@ -36,33 +36,33 @@ const getProductUpdate = async (req, res) => {
 const ProductUpdate = async (req, res) => {
   const data = req.body;
   const id = req.params.id;
-  if (!req.file) {
-    const product = new Product(
-      data.title,
-      data.summary,
-      data.price,
-      data.content,
-      data.category
-    );
-    await product.updateOne(id);
-    res.redirect("/admin/product");
-    return;
-  }
+  // if (!req.file) {
+  //   const product = new Product(
+  //     data.title,
+  //     data.summary,
+  //     data.price,
+  //     data.content,
+  //     data.category
+  //   );
+  //   await product.updateOne(id);
+  //   res.redirect("/admin/product");
+  //   return;
+  // }
   const product = new Product(
     data.title,
     data.summary,
     data.price,
     data.content,
     data.category,
-    req.file.filename
+    data.imgURL
   );
   const productDate = await product.loadOne(id);
-  const imgpath = path.join(__dirname + "./../public/img/");
-  await fs.unlink(imgpath + productDate.filename, (err) => {
-    if (err) {
-      throw { message: "wrong" };
-    }
-  });
+  // const imgpath = path.join(__dirname + "./../public/img/");
+  // await fs.unlink(imgpath + productDate.filename, (err) => {
+  //   if (err) {
+  //     throw { message: "wrong" };
+  //   }
+  // });
   await product.updateOne(id);
   res.redirect("/admin/product");
 };
@@ -70,14 +70,14 @@ const ProductUpdate = async (req, res) => {
 const ProductDelete = async (req, res) => {
   const id = req.params.id;
   const product = new Product();
-  const productDate = await product.loadOne(id);
-  const imgpath = path.join(__dirname + "./../public/img/");
+  // const productDate = await product.loadOne(id);
+  // const imgpath = path.join(__dirname + "./../public/img/");
   await product.deleteOne(id);
-  await fs.unlink(imgpath + productDate.filename, (err) => {
-    if (err) {
-      throw { message: "wrong" };
-    }
-  });
+  // await fs.unlink(imgpath + productDate.filename, (err) => {
+  //   if (err) {
+  //     throw { message: "wrong" };
+  //   }
+  // });
 };
 
 const getAdminOrder = (req, res) => {

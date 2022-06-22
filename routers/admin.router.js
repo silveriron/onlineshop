@@ -19,15 +19,11 @@ const upload = multer({ storage: storage });
 
 router.get("/product", adminController.getAdminProduct);
 
-router.post("/product", upload.single("img"), adminController.adminProduct);
+router.post("/product", adminController.adminProduct);
 
 router.get("/product/:id/update", adminController.getProductUpdate);
 
-router.post(
-  "/product/:id/update",
-  upload.single("img"),
-  adminController.ProductUpdate
-);
+router.post("/product/:id/update", adminController.ProductUpdate);
 
 router.delete("/product/:id/delete", adminController.ProductDelete);
 
