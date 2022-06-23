@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>배송조회</title>
+    <link href="/css/tracking.css" />
+  </head>
+  <body>
+    <form action="http://info.sweettracker.co.kr/tracking/5" method="post">
+      <div class="form-group">
+        <input
+          hidden
+          type="text"
+          class="form-control"
+          id="t_key"
+          name="t_key"
+          value="UU9l7rSLPBkTLeLHGOV1lg"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          hidden
+          type="text"
+          class="form-control"
+          name="t_code"
+          id="t_code"
+          value="04"
+          placeholder="택배사 코드"
+        />
+      </div>
+      <div class="form-group">
+        <label for="t_invoice">운송장 번호</label>
+        <input
+          type="text"
+          class="form-control"
+          name="t_invoice"
+          id="t_invoice"
+          value="<%= trackingNumber %>"
+          placeholder="운송장 번호"
+        />
+      </div>
+      <button type="submit" class="btn btn-default">조회하기</button>
+    </form>
+  </body>
+</html>

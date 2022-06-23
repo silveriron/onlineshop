@@ -25,7 +25,7 @@ button.addEventListener("click", function () {
     amount: +orderPriceinput.value,
     orderId: "1K8oCTRJc-f1ixxdbGmj0",
     orderName: order[0].textContent + `외 ${order.length - 1} 건`,
-    customerName: customerName.textContent,
+    customerName: customerName.value,
     successUrl: "http://localhost:3000/customer/payments/success",
     failUrl: "http://localhost:3000/customer/payments/fail",
   });

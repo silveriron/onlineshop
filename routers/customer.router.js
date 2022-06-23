@@ -21,6 +21,8 @@ router.get("/order", customerController.getOrder);
 
 router.get("/order/:id", customerController.getOrderDetail);
 
+router.get("/tracking/:id", customerController.getTracking);
+
 router.get("/payments/success", customerController.paymentsSuccess);
 
 router.get("/payments/fail", customerController.paymentsFail);

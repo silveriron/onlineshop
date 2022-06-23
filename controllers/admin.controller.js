@@ -84,7 +84,7 @@ const getAdminOrder = (req, res) => {
   if (!res.locals.isAdmin) {
     res.status(404).render("404");
   }
-  res.render("admin/includes/productList");
+  res.render("admin/orderManage");
 };
 
 const adminOrder = (req, res) => {

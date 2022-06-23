@@ -1,61 +1,69 @@
 .conteiner {
-    border: 1px solid rgba(0,0,0,.125);
-    margin: var(--space-2) 0 ;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 2px;
+  margin: var(--space-2) 0;
+}
+
+.padding {
+  padding: var(--space-4);
 }
 
 .orderList {
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: 4px;
-    margin-bottom: var(--space-2);
-}
-
-h2 {
-    margin: var(--space-2) 0;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 4px;
+  margin-bottom: var(--space-2);
 }
 
 .orderTitle {
-    padding: var(--space-4) 0 var(--space-6) var(--space-2);
-    margin-bottom: var(--space-6);
-    font-size: 2rem;
-    border-bottom: 2px solid black;
+  padding: var(--space-4) 0 var(--space-6) var(--space-2);
+  margin-bottom: var(--space-6);
+  font-size: 2rem;
+  border-bottom: 2px solid black;
 }
 
 hr {
-    margin: 8px 0
+  margin: 8px 0;
 }
 
 .orderContent {
-    display: flex;
+  display: flex;
 }
 
 .orderList .img {
-    align-self: center;
-    margin-top: var(--space-2);
-    margin-bottom: var(--space-4);
-
-
+  align-self: center;
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-4);
 }
 
 img {
-    height: 100px;
-    width: 150px;
-    object-fit: cover;
-    border-radius: 2px;
+  height: 100px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 2px;
 }
 
 table {
-    margin: var(--space-2) 0;
-    margin-left: var(--space-2);
+  margin: var(--space-2) 0;
+  margin-left: var(--space-2);
 }
 
 .orderList p {
-    margin: 0;
+  margin: 0;
 }
 
 td {
-    padding-left: var(--space-2);
+  padding-left: var(--space-2);
 }
 
 .orderList a:hover {
-    color: inherit;
+  color: inherit;
+}
+
+.button:disabled {
+  background-color: var(--color-black-100);
+  box-shadow: none;
+}
+
+.button:disabled:hover {
+  cursor: unset;
 }

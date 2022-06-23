@@ -31,7 +31,6 @@ td {
   width: 25rem;
 }
 
-
 hr {
   margin: 24px auto;
   border: 1px solid var(--color-black-100);
@@ -41,7 +40,6 @@ form .formBtn {
   font-size: 0.5rem;
   margin: var(--space-4) var(--space-2);
   height: var(--space-8);
-
 }
 
 form #duplicateAlert,
@@ -68,8 +66,6 @@ form input {
   border-radius: 4px;
 }
 
-
-
 #img {
   border: 0;
 }
@@ -94,12 +90,11 @@ form input {
   width: 35%;
 }
 
-
 form #btnDiv {
   text-align: center;
 }
 
-form button {
+/* form button {
   margin: var(--space-4) auto;
   padding: var(--space-2) var(--space-6);
   border: 0;
@@ -113,7 +108,7 @@ form button {
 form button:hover {
   cursor: pointer;
   background-color: var(--color-primary-400);
-}
+} */
 
 #loginLink {
   display: block;

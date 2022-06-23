@@ -3,11 +3,11 @@
       <% if (!locals.user) { %>
         <p>비회원은 주문이 불가능합니다.</p>
         <% } else { %>
+            <input hidden name="name" id="name" value="<%= locals.user.name %>"
             <h3>배송주소</h3>
     <p><%= locals.user.address.address %>
         <%= locals.user.address.detailAddress %>
     </p>
-    <button type="button" id="changeAddress" onclick="execDaumPostcode()">주소변경</button>
     <% } %>
 </div>
   <table>
@@ -54,9 +54,9 @@
   </table>
   <div>
     <% if (!locals.user) { %>
-        <button id="payment-button" disabled>주문하기</button>
+        <button type="button" id="payment-button" disabled>주문</button>
     <% } else { %>
-    <button id="payment-button">주문하기</button>
+    <button type="button" id="payment-button">주문하기</button>
     <% } %>
   </div>
 </ㅇ>

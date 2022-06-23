@@ -75,3 +75,19 @@ a {
   text-decoration: none;
   color: var(--color-black-400);
 }
+
+.button {
+  margin: var(--space-4) auto;
+  padding: var(--space-2) var(--space-6);
+  border: 0;
+  font-family: inherit;
+  color: white;
+  background-color: var(--color-primary-300);
+  border-radius: 4px;
+  box-shadow: 1px 1px 1px var(--color-primary-300);
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: var(--color-primary-400);
+}

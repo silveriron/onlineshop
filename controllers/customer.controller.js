@@ -106,7 +106,6 @@ const getOrder = async (req, res) => {
   if (!Array.isArray(orderLists) || orderLists.length === 0) {
     res.render("customer/order", { orderLists: 0 });
   } else {
-    
     res.render("customer/order", { orderLists: orderLists });
   }
 };
@@ -115,8 +114,19 @@ const getOrderDetail = async (req, res) => {
   const id = req.params.id;
   const order = new Order();
   const getOrder = await order.loadOne(id);
-  res.render("customer/orderDetail", { orderid: getOrder._id, orderList: getOrder.orderList });
-}
+  res.render("customer/orderDetail", {
+    orderid: getOrder._id,
+    orderList: getOrder.orderList,
+    orderStatus: getOrder.orderStatus,
+  });
+};
+
+const getTracking = async (req, res) => {
+  const id = req.params.id;
+  const order = new Order();
+  const getOrder = await order.loadOne(id);
+  res.render("customer/tracking", { trackingNumber: getOrder.trackingNumber });
+};
 
 const paymentsSuccess = async (req, res) => {
   const order = new Order(res.locals.user, req.session.cartList);
@@ -142,4 +152,5 @@ module.exports = {
   paymentsSuccess: paymentsSuccess,
   paymentsFail: paymentsFail,
   getOrderDetail: getOrderDetail,
+  getTracking: getTracking,
 };

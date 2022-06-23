@@ -10,13 +10,13 @@ class Order {
   }
 
   async save() {
-    let title
-    const today = new Date()
-    const year = today.getFullYear()
-    const month = today.getMonth() + 1
-    const date = today.getDate()
+    let title;
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const date = today.getDate();
     if (this.orderList.length === 1) {
-      title = this.orderList[0].title
+      title = this.orderList[0].title;
     } else {
       title =
         this.orderList[0].title +
@@ -26,18 +26,21 @@ class Order {
     }
     let totalPrice = 0;
     for (const orderList of this.orderList) {
-      totalPrice += orderList.price;
+      totalPrice += orderList.price * orderList.orderCount;
     }
-    await db.getDb().collection("order").insertOne({
-      id: uuid.v4(),
-      date: year + '년 ' + month + '월 ' + date + '일',
-      user: this.user,
-      title: title,
-      totalPrice: totalPrice,
-      viewPrice: numberWithCommas(totalPrice),
-      orderStatus: "배송준비중",
-      orderList: this.orderList,
-    });
+    await db
+      .getDb()
+      .collection("order")
+      .insertOne({
+        id: uuid.v4(),
+        date: year + "년 " + month + "월 " + date + "일",
+        user: this.user,
+        title: title,
+        totalPrice: totalPrice,
+        viewPrice: numberWithCommas(totalPrice),
+        orderStatus: "배송준비중",
+        orderList: this.orderList,
+      });
   }
 
   async load(userEmail) {
@@ -52,8 +55,11 @@ class Order {
   }
 
   async loadOne(id) {
-    const order = await db.getDb().collection("order").findOne({_id: ObjectId(id)});
-    return order
+    const order = await db
+      .getDb()
+      .collection("order")
+      .findOne({ _id: ObjectId(id) });
+    return order;
   }
 }
 

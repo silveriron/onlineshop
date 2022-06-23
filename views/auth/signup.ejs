@@ -3,9 +3,12 @@
   <head>
     <%- include('../base/includes/head', {title: '회원가입'})%>
     <link rel="stylesheet" href="css/form.css" />
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
+    <script
+      src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+      defer
+    ></script>
     <script src="script/form.js" defer></script>
-
+    <script src="script/address.js" defer></script>
   </head>
   <body>
     <%- include('../base/includes/header') %>
@@ -31,11 +34,17 @@
                   value="<%= inputData.email %>"
                   required
                 />
-                <button class="formBtn" id="duplicateCheck" type="button" data-csrfToken="<%= locals.csrfToken %>">중복확인</button>
+                <button
+                  class="formBtn"
+                  id="duplicateCheck"
+                  type="button"
+                  data-csrfToken="<%= locals.csrfToken %>"
+                >
+                  중복확인
+                </button>
                 <p id="emailNotInput">이메일을 입력해주세요.</p>
                 <p id="duplicateAlert">이미 가입된 이메일입니다.</p>
                 <p id="signUpAvailable">가입 가능한 이메일입니다.</p>
-
               </td>
             </tr>
             <tr>
@@ -93,15 +102,30 @@
                   placeholder="주소"
                   required
                 />
-                <button class="formBtn" onclick="execDaumPostcode()" type="button" >주소찾기</button>
+                <button
+                  class="formBtn"
+                  onclick="execDaumPostcode()"
+                  type="button"
+                >
+                  주소찾기
+                </button>
               </td>
             </tr>
             <tr>
-              <th>
-              </th>
+              <th></th>
               <td>
-                <input id="postcode" name="postcode" value="<%= inputData.address.postcode %>" placeholder="우편번호" />
-                <input id="detailAddress" name="detailAddress" value="<%= inputData.address.detailAddress %>" placeholder="상세주소" />
+                <input
+                  id="postcode"
+                  name="postcode"
+                  value="<%= inputData.address.postcode %>"
+                  placeholder="우편번호"
+                />
+                <input
+                  id="detailAddress"
+                  name="detailAddress"
+                  value="<%= inputData.address.detailAddress %>"
+                  placeholder="상세주소"
+                />
               </td>
             </tr>
           </tbody>
