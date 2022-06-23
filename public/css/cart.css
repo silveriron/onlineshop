@@ -10,8 +10,15 @@
 
 .cartList {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: start;
+}
+
+.productList {
+  flex: 2
+}
+
+.cartOrder {
+  flex: 1
 }
 
 input {
@@ -30,12 +37,12 @@ th {
   width: 10rem;
 }
 
-th p,
+/* th p,
 td p {
   padding: 0 var(--space-4);
   margin: 0 auto;
   margin-bottom: var(--space-8);
-}
+} */
 
 #btnDiv {
   margin-top: var(--space-8);
@@ -56,4 +63,33 @@ button {
 button:hover {
   cursor: pointer;
   background-color: var(--color-primary-400);
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid rgba(0,0,0,.125);
+  padding: var(--space-6) 0;
+  margin: 0 var(--space-2);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.userInfo table {
+  text-align: start;
+}
+
+#changeAddress {
+  font-size: 0.5rem;
+  padding: var(--space-2);
+}
+
+.total {
+  border-top: 2px solid black;
+}
+
+.total p {
+  margin-top: var(--space-4);
 }

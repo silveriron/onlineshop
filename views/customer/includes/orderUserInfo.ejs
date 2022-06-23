@@ -1,0 +1,62 @@
+<div class="userInfo">
+  <div>
+      <% if (!locals.user) { %>
+        <p>비회원은 주문이 불가능합니다.</p>
+        <% } else { %>
+            <h3>배송주소</h3>
+    <p><%= locals.user.address.address %>
+        <%= locals.user.address.detailAddress %>
+    </p>
+    <button type="button" id="changeAddress" onclick="execDaumPostcode()">주소변경</button>
+    <% } %>
+</div>
+  <table>
+    <tbody>
+        <tr>
+            <th>
+                <p>상품금액</p>
+            </th>
+            <td>
+                <p id="cartTotalPrice"></p>
+                <input
+                    id="orderPrice"
+                    type="hidden"
+                    name="orderPrice"
+                    value=""
+                  />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <p>상품할인금액</p>
+            </th>
+            <td>
+                <p>0원</p>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <p>배송비</p>
+            </th>
+            <td>
+                <p>0원</p>
+            </td>
+        </tr>
+        <tr class="total">
+            <th>
+                <p>결제예정금액</p>
+            </th>
+            <td>
+                <p>0원</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+  <div>
+    <% if (!locals.user) { %>
+        <button id="payment-button" disabled>주문하기</button>
+    <% } else { %>
+    <button id="payment-button">주문하기</button>
+    <% } %>
+  </div>
+</ㅇ>
