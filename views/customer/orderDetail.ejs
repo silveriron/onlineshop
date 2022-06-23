@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../base/includes/head", {title: '주문 내역 상세'}) %>
+    <link rel="stylesheet" href="/css/order.css" />
+  </head>
+  <body>
+    <%- include("../base/includes/header") %>
+    <main>
+      <h1>주문 내역 상세</h1>
+      <section class="orderdetail">
+        <h2 class="orderTitle">주문번호 <%= orderid %></h2>
+        <% for (const order of orderList) { %> <%-
+        include("./includes/orderDetailContent", {order: order}) %> <% } %>
+      </section>
+      <section></section>
+    </main>
+  </body>
+</html>

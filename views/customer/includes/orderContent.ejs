@@ -1,13 +1,41 @@
-<div class="card mb-3" style="max-width: 100%">
-  <div class="row g-0">
-    <div class="col-md-8">
-      <div class="card-body">
-        <p class="card-text">주문번호 : <%= orderList.id %></p>
-        <h5 class="card-title">주문내역 : <%= orderList.title %></h5>
-        <p class="card-text">금액 : <%= orderList.totalPrice %></p>
-        <p class="card-text">주문날짜 : <%= orderList.date %></p>
-        <p class="card-text">주문상태 : <%= orderList.orderStatus %></p>
+<div class="orderList container">
+  <a href="/customer/order/<%= orderList._id %>">
+    <div>
+      <h2 class="title"><%= orderList.title %></h2>
+      <hr />
+      <div class="orderContent">
+        <div class="img">
+          <img src="<%= orderList.orderList[0].imgURL %>" />
+        </div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                <p>주문번호</p>
+              </th>
+              <td>
+                <p><%= orderList._id %></p>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>결제금액</p>
+              </th>
+              <td>
+                <p><%= orderList.viewPrice %>원</p>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>주문상태</p>
+              </th>
+              <td>
+                <p><%= orderList.orderStatus %></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
+  </a>
 </div>

@@ -13,7 +13,11 @@
       <form class="cartList" action="/customer/cart" method="POST">
         <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
         <section class="productList">
-          <% for (const product of locals.cartList) { %> <%-
+          <% if (locals.cartList.length === 0 || !locals.cartList) { %>
+          <p class="emptyCart">
+            장바구니가 비었습니다. 마음에 드는 상품을 채워주세요!
+          </p>
+          <% } %> <% for (const product of locals.cartList) { %> <%-
           include('./includes/cartContent', {product: product}) %> <% } %>
         </section>
         <section class="cartOrder">

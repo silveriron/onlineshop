@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('../base/includes/head', {title: '주문목록'})%>
+    <%- include('../base/includes/head', {title: '주문내역'})%>
+    <link rel="stylesheet" href="/css/order.css" >
   </head>
   <body>
     <%- include('../base/includes/header') %>
     <main>
+      <h1>주문 내역</h1>
       <% if (orderLists === 0) { %>
       <p>주문내역이 없습니다.</p>
       <% } else { %> <% for (const orderList of orderLists) { %> <%-

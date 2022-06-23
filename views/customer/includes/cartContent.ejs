@@ -1,17 +1,33 @@
-<div class="card mb-3" style="max-width: 100%;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="<%= product.imgURL %>" class="img-fluid rounded-start productImg" alt="<%= product.title %>">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title"><%= product.title %></h5>
-          <p class="card-text"><%= product.commasPrice %></p>
-          <input id="orderCount" name="<%= product.title %>" type="number" min="1" step="1" value="<%= product.orderCount %>">
-          <input id="price" name="price" type="hidden" value="<%= product.price %>">
-          <p class="card-text" id="itemTotalPrice"></p>
-            <a href="/customer/cart/<%= product.title %>/delete">삭제</a>
-        </div>
+<div class="card mb-3" style="max-width: 100%">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img
+        src="<%= product.imgURL %>"
+        class="img-fluid rounded-start productImg"
+        alt="<%= product.title %>"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= product.title %></h5>
+        <p class="card-text"><%= product.commasPrice %></p>
+        <input
+          id="orderCount"
+          name="<%= product.title %>"
+          type="number"
+          min="1"
+          step="1"
+          value="<%= product.orderCount %>"
+        />
+        <input
+          id="price"
+          name="price"
+          type="hidden"
+          value="<%= product.price %>"
+        />
+        <p class="card-text" id="itemTotalPrice"></p>
+        <a href="/customer/cart/<%= product.title %>/delete">삭제</a>
       </div>
     </div>
+  </div>
 </div>

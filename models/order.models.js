@@ -1,5 +1,7 @@
 const db = require("../data/database");
 const uuid = require("uuid");
+const numberWithCommas = require("../util/numberWithCommas");
+const ObjectId = require("mongodb").ObjectId;
 
 class Order {
   constructor(user, orderList) {
@@ -32,6 +34,7 @@ class Order {
       user: this.user,
       title: title,
       totalPrice: totalPrice,
+      viewPrice: numberWithCommas(totalPrice),
       orderStatus: "배송준비중",
       orderList: this.orderList,
     });
@@ -46,6 +49,11 @@ class Order {
       })
       .toArray();
     return orderLists;
+  }
+
+  async loadOne(id) {
+    const order = await db.getDb().collection("order").findOne({_id: ObjectId(id)});
+    return order
   }
 }
 
