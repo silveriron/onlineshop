@@ -27,8 +27,8 @@ button.addEventListener("click", function () {
     orderId: "1K8oCTRJc-f1ixxdbGmj0",
     orderName: order[0].textContent + `외 ${order.length - 1} 건`,
     customerName: customerName.value,
-    successUrl: "/customer/payments/success",
-    failUrl: "/customer/payments/fail",
+    successUrl: "localhost:3000/customer/payments/success",
+    failUrl: "localhost:3000/customer/payments/fail",
   });
 });
 
