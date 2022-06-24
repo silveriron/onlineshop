@@ -21,6 +21,7 @@ var tossPayments = TossPayments(clientKey);
 var button = document.getElementById("payment-button"); // 결제하기 버튼
 
 button.addEventListener("click", function () {
+  console.log(customerName.value)
   tossPayments.requestPayment("카드", {
     amount: +orderPriceinput.value,
     orderId: "1K8oCTRJc-f1ixxdbGmj0",

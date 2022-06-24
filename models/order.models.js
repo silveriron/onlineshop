@@ -1,6 +1,7 @@
 const db = require("../data/database");
 const uuid = require("uuid");
 const numberWithCommas = require("../util/numberWithCommas");
+const e = require("express");
 const ObjectId = require("mongodb").ObjectId;
 
 class Order {
@@ -44,6 +45,10 @@ class Order {
   }
 
   async load(userEmail) {
+    if (userEmail === "admin") {
+      const orderLists = await db.getDb().collection("order").find().toArray();
+      return orderLists
+    }
     const orderLists = await db
       .getDb()
       .collection("order")
@@ -60,6 +65,10 @@ class Order {
       .collection("order")
       .findOne({ _id: ObjectId(id) });
     return order;
+  }
+
+  async changeOrderStatus(id, orderStatus, trackingNumber) {
+    await db.getDb().collection("order").updateOne({_id: ObjectId(id)}, {$set:{orderStatus: orderStatus, trackingNumber: trackingNumber}})
   }
 }
 

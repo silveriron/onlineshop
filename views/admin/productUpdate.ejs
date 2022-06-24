@@ -12,8 +12,6 @@
       <form
         action="/admin/product/<%= product._id %>/update?_csrf=<%= locals.csrfToken %>"
         method="POST"
-        enctype="multipart/form-data"
-        accept-charset="UTF-8"
       >
         <table>
           <tbody>
@@ -94,7 +92,13 @@
               <td>
                 <!-- <input id="img" name="img" type="file" accept="image/*" />
                 -->
-                <input id="imgURL" name="imgURL" type="text" required value="<%= product.imgURL %>" />
+                <input
+                  id="imgURL"
+                  name="imgURL"
+                  type="text"
+                  required
+                  value="<%= product.imgURL %>"
+                />
               </td>
             </tr>
           </tbody>
