@@ -28,9 +28,9 @@ button.addEventListener("click", function () {
     orderName: order[0].textContent + `외 ${order.length - 1} 건`,
     customerName: customerName.value,
     successUrl:
-      "http://ec2-3-88-51-232.compute-1.amazonaws.com//customer/payments/success",
+      "http://ec2-3-88-51-232.compute-1.amazonaws.com/customer/payments/success",
     failUrl:
-      "http://ec2-3-88-51-232.compute-1.amazonaws.com//customer/payments/fail",
+      "http://ec2-3-88-51-232.compute-1.amazonaws.com/customer/payments/fail",
   });
 });
 
