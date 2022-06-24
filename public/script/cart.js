@@ -21,14 +21,14 @@ var tossPayments = TossPayments(clientKey);
 var button = document.getElementById("payment-button"); // 결제하기 버튼
 
 button.addEventListener("click", function () {
-  console.log(customerName.value)
+  console.log(customerName.value);
   tossPayments.requestPayment("카드", {
     amount: +orderPriceinput.value,
     orderId: "1K8oCTRJc-f1ixxdbGmj0",
     orderName: order[0].textContent + `외 ${order.length - 1} 건`,
     customerName: customerName.value,
-    successUrl: "http://localhost:3000/customer/payments/success",
-    failUrl: "http://localhost:3000/customer/payments/fail",
+    successUrl: "/customer/payments/success",
+    failUrl: "/customer/payments/fail",
   });
 });
 
