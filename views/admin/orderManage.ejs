@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<<<<<<< HEAD
-    <%- include("../base/includes/head", {title: "주문관리"})%>
-  </head>
-  <body>
-    <%- include("../base/includes/header") %>
-=======
     <%- include("../base/includes/head" , {title: "주문관리"}) %>
     <link rel="stylesheet" href="/css/order.css" />
   </head>
@@ -17,6 +11,5 @@
       <% for (const orderList of orderLists) { %> <%-
       include("./includes/orderContent", {orderList: orderList}) %> <% } %>
     </main>
->>>>>>> d8d185b8c0fb8adb7e93fbd575b8ae1df95fabef
   </body>
 </html>
