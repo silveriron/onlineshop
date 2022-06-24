@@ -29,6 +29,8 @@ router.delete("/product/:id/delete", adminController.ProductDelete);
 
 router.get("/order", adminController.getAdminOrder);
 
-router.post("/order", adminController.adminOrder);
+router.get("/order/:id", adminController.getAdminOrderDetail);
+
+router.post("/order/orderStatus/:id", adminController.adminOrderStatus);
 
 module.exports = router;

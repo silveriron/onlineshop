@@ -1,0 +1,41 @@
+<div class="orderList container">
+  <a href="/admin/order/<%= orderList._id %>">
+    <div>
+      <h2 class="title"><%= orderList.title %></h2>
+      <hr />
+      <div class="orderContent">
+        <div class="img">
+          <img src="<%= orderList.orderList[0].imgURL %>" />
+        </div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                <p>주문번호</p>
+              </th>
+              <td>
+                <p><%= orderList._id %></p>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>결제금액</p>
+              </th>
+              <td>
+                <p><%= orderList.viewPrice %>원</p>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>주문상태</p>
+              </th>
+              <td>
+                <p><%= orderList.orderStatus %></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </a>
+</div>

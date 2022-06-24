@@ -1,6 +1,7 @@
 const Product = require("../models/product.models");
 const fs = require("fs");
 const path = require("path");
+const Order = require("../models/order.models");
 
 const getAdminProduct = async (req, res) => {
   if (!res.locals.isAdmin) {
@@ -80,23 +81,44 @@ const ProductDelete = async (req, res) => {
   // });
 };
 
-const getAdminOrder = (req, res) => {
+const getAdminOrder = async (req, res) => {
   if (!res.locals.isAdmin) {
     res.status(404).render("404");
+    return
   }
-  res.render("admin/orderManage");
+  const order = new Order();
+  const orderLists = await order.load("admin");
+  res.render("admin/orderManage", {orderLists: orderLists});
 };
 
-const adminOrder = (req, res) => {
-  res.render("admin/productManage");
+const getAdminOrderDetail = async (req, res) => {
+  const id = req.params.id;
+  const order = new Order();
+  const orderList = await order.loadOne(id);
+  res.render("admin/orderManageDetail", {
+    orderid: orderList._id,
+    orderList: orderList.orderList,
+    orderStatus: orderList.orderStatus,
+    user: orderList.user,
+    date: orderList.date
+  })
+}
+
+const adminOrderStatus = async (req, res) => {
+  const id = req.params.id;
+  const data = req.body;
+  const order = new Order();
+  await order.changeOrderStatus(id, data.orderStatus, data.trackingNumber);
+  res.redirect(`/admin/order/${id}`);
 };
 
 module.exports = {
   getAdminProduct: getAdminProduct,
   adminProduct: adminProduct,
   getAdminOrder: getAdminOrder,
-  adminOrder: adminOrder,
+  adminOrderStatus: adminOrderStatus,
   getProductUpdate: getProductUpdate,
   ProductUpdate: ProductUpdate,
   ProductDelete: ProductDelete,
+  getAdminOrderDetail,getAdminOrderDetail,
 };

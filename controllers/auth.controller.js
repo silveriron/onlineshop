@@ -104,7 +104,7 @@ const login = async (req, res) => {
     req.session.isAuth = true;
     req.session.isAdmin = userData.isAdmin;
     req.session.user = {
-      eamil: userData.email,
+      email: userData.email,
       name: userData.name,
       address: userData.address,      
     }

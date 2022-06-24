@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../base/includes/head", {title: '주문 내역 상세'}) %>
+    <link rel="stylesheet" href="/css/order.css" />
+    <script src="/script/tracking.js" defer></script>
+  </head>
+  <body>
+    <%- include("../base/includes/header") %>
+    <main>
+      <h1>주문 내역 상세</h1>
+      <section class="orderdetail">
+        <h2 class="orderTitle">주문번호 <%= orderid %></h2>
+        <% for (const order of orderList) { %> <%-
+        include("../customer/includes/orderDetailContent", {order: order}) %> <%
+        } %>
+      </section>
+      <section>
+        <h2 class="orderTitle">주문정보</h2>
+        <div class="conteiner">
+          <table>
+            <tbody>
+              <tr>
+                <th>
+                  <p>주문자</p>
+                </th>
+                <td>
+                  <p><%= user.name %></p>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <p>우편번호</p>
+                </th>
+                <td>
+                  <p><%= user.address.postcode %></p>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <p>배송주소</p>
+                </th>
+                <td>
+                  <p>
+                    <%= user.address.address %> <%= user.address.detailAddress
+                    %>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <p>주문날짜</p>
+                </th>
+                <td>
+                  <p><%= date %></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section>
+        <h2 class="orderTitle">진행상황</h2>
+        <div class="conteiner padding">
+          <p>주문상태 : <span><%= orderStatus %></span></p>
+          <p>주문상태가 배송중이면 배송조회가 가능합니다.</p>
+          <% if (orderStatus === "배송중") { %>
+          <button class="button" id="tracking" data-id="<%= orderid %>">
+            배송조회
+          </button>
+          <% } else { %>
+          <button class="button" disabled>배송조회</button>
+          <% } %>
+          <form action="/admin/order/orderStatus/<%= orderid %>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
+            <table>
+              <tbody>
+                <tr>
+                  <th>
+                    <label for="orderStatus">주문상태</label>
+                  </th>
+                  <td>
+                    <select id="orderStatus" name="orderStatus">
+                      <option value="배송중">배송중</option>
+                      <option value="배송완료">배송완료</option>
+                      <option value="주문취소">주문취소</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="trackingNumber">송장번호</label>
+                  </th>
+                  <td>
+                    <input
+                      id="trackingNumber"
+                      name="trackingNumber"
+                      type="text"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="button">주문상태 변경</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

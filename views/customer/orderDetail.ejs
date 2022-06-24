@@ -19,12 +19,12 @@
         <div class="conteiner padding">
           <p>주문상태 : <span><%= orderStatus %></span></p>
           <p>주문상태가 배송중이면 배송조회가 가능합니다.</p>
-          <% if (!orderStatus === "배송중") { %>
-          <button class="button" disabled>배송조회</button>
-          <% } else { %>
+          <% if (orderStatus === "배송중") { %>
           <button class="button" id="tracking" data-id="<%= orderid %>">
             배송조회
           </button>
+          <% } else { %>
+          <button class="button" disabled>배송조회</button>
           <% } %>
         </div>
       </section>
